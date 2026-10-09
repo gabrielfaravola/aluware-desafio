@@ -74,6 +74,7 @@ Respostas:
 
 ## Segurança e limitações
 
-- A service role key só é lida dentro da Edge Function (`Deno.env`). O front usa só a publishable key, com RLS e leitura apenas; em `clientes` o acesso anônimo é limitado a `id` e `nome`.
+- A service role key só é lida dentro da Edge Function (`Deno.env`). O front usa só a publishable key, com RLS e apenas leitura liberada.
+- As policies de leitura liberam todas as colunas, incluindo o CPF dos clientes. Em produção, o acesso anônimo deveria ser restrito às colunas necessárias.
 - O webhook não autentica o remetente. Em produção ele deveria validar um token enviado pelo gateway (o Asaas envia um no header).
 - Clientes, veículos e contratos são cadastrados por SQL; não há tela de cadastro.
